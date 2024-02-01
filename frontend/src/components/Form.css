@@ -1,0 +1,41 @@
+.crud-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: .5em;
+}
+
+.input-container label {
+    font-weight: 600;
+}
+
+.input-container input {
+    width: 200px;
+    padding: 1em;
+    border-radius: 5px;
+    border: 1px solid #999;
+}
+
+.btn {    
+    align-self: flex-end;
+    padding: 1em;
+    background-color: #3171D8;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.btn:hover {
+    background-color: #3171d8c7;
+}
