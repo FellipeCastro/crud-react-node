@@ -1,0 +1,45 @@
+.crud-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.crud-table th {
+    font-weight: 600;
+}
+
+.crud-table th, .crud-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.crud-table th {
+    background-color: #f2f2f2;
+}
+
+.crud-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.crud-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+.crud-table td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+}
+
+.crud-table td:last-child svg {
+    color: #3171D8;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+/* Adjust the width of the "Telefone" column */
+.crud-table th[colSpan='2'], .crud-table td[colSpan='2'] {
+    width: 120px;
+}
