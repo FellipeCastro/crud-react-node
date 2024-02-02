@@ -9,18 +9,15 @@ import Table from './components/Table'
 function App() {
   const [users, setUsers] = useState([])
 
-  const getUsers = async () => {
-    try {
-      const res = await axios.get('http://localhost:8800')
-      setUsers(res.data) 
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
   useEffect(() => {
-    getUsers()
-  }, [setUsers])
+    axios.get('http://localhost:8800')
+    .then(res => {
+      setUsers(res.data)
+    })
+    .catch(err => {
+      console.log(`Erro ao obter dados da API: ${err}`)
+    })
+  }, [])
 
   return (
     <>

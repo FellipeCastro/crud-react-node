@@ -14,16 +14,18 @@ function Table({users}) {
             </thead>
 
             <tbody>
-                {users.map((item, i) => {
-                    <tr key={i}>
-                        <td>{item.nome}</td>
-                        <td>{item.email}</td>
-                        <td>{item.fone}</td>
-                        <td>
-                            <FaEdit />
-                            <FaTrash />
-                        </td>
-                    </tr>
+                {users.map((user, i) => {
+                    return (
+                        <tr key={i}>
+                            <td>{user.nome}</td>
+                            <td>{user.email}</td>
+                            <td>{user.fone}</td>
+                            <td>
+                                <FaEdit />
+                                <FaTrash />
+                            </td>
+                        </tr>
+                    )
                 })}
             </tbody>
         </table>
