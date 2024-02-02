@@ -12,8 +12,6 @@ function Form({handleFormSubmit}) {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        console.log('Dados a serem enviados:', { nome, email, fone, dataNascimento })
-
         try {
             await axios.post('http://localhost:8800', {
                 nome: nome,
@@ -27,19 +25,23 @@ function Form({handleFormSubmit}) {
             setEmail('')
             setFone('')
             setDataNascimento('')
-
-            // Recarregar a página após a submissão
-            handleFormSubmit()
         } catch (err) {
             console.log(`Erro ao adicionar usuário: ${err}`)
         }
     }
 
     return (
-        <form className='crud-form' autoComplete='off' onSubmit={handleSubmit}>
+        <form className='crud-form' autoComplete='off' onSubmit={() => handleSubmit}>
             <div className="input-container">
                 <label htmlFor="nome">Nome: </label>
-                <input type="text" name="nome" id="nome" placeholder="Digite seu nome aqui" required onChange={(e) => setNome(e.target.value)} />
+                <input 
+                    type="text" 
+                    name="nome" 
+                    id="nome" 
+                    placeholder="Digite seu nome aqui" 
+                    required 
+                    onChange={(e) => setNome(e.target.value)} 
+                />
             </div>
             <div className="input-container">
                 <label htmlFor="email">E-mail: </label>

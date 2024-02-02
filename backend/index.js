@@ -21,7 +21,7 @@ conexao.connect()
 
 // Rotas
 
-// Listar Usuários
+// Listar usuários
 app.get('/', (req, res) => {
     const query = 'SELECT * FROM usuarios'
 
@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
     })
 })
 
-// Novo Usuário
+// Cadastrar novo usuário
 app.post('/', (req, res) => {
     const { nome, email, fone, data_nascimento } = req.body
 
@@ -45,7 +45,22 @@ app.post('/', (req, res) => {
             console.log(`Erro ao adicionar usuário: ${err}`)
             return res.status(500).json({error: 'Erro interno do servidor'})
         } else {
-            return res.status(200).json()
+            return res.status(200).json(result)
+        }
+    })
+})
+
+// Remover usuário
+app.delete('/:id', (req, res) => {
+    const id = req.params.id
+    const query = 'DELETE FROM usuarios WHERE id = ?'
+
+    conexao.query(query, id, (err, result) => {
+        if (err) {
+            console.log(`Erro ao remover usuário: ${err}`)
+            return res.status(500).json({error: 'Erro interno do servidor'})
+        } else {
+            return res.status(200).json(result)
         }
     })
 })
