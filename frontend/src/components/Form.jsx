@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import './Form.css'
 
-function Form() {
+function Form({handleFormSubmit}) {
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [fone, setFone] = useState('')
@@ -29,8 +29,7 @@ function Form() {
             setDataNascimento('')
 
             // Recarregar a página após a submissão
-            window.location.reload()
-            fetchData()
+            handleFormSubmit()
         } catch (err) {
             console.log(`Erro ao adicionar usuário: ${err}`)
         }

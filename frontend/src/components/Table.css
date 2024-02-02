@@ -27,16 +27,19 @@
 }
 
 .crud-table td:last-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5em;
+    text-align: center;
 }
 
 .crud-table td:last-child svg {
     color: #3171D8;
     font-size: 1.2em;
     cursor: pointer;
+    transition: .5s;
+    margin: 0 5px;
+}
+
+.crud-table td:last-child svg:hover {
+    color: #3171d8c7;
 }
 
 /* Adjust the width of the "Telefone" column */

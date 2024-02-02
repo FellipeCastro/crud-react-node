@@ -9,21 +9,26 @@ import Table from './components/Table'
 function App() {
   const [users, setUsers] = useState([])
 
-  useEffect(() => {
-    axios.get('http://localhost:8800')
-    .then(res => {
+  const fetchUsers = async () => {
+    try {
+      const res = await axios.get('http://localhost:8800')
       setUsers(res.data)
-    })
-    .catch(err => {
-      console.log(`Erro ao obter dados da API: ${err}`)
-    })
-  }, [])
+    } catch (err) {
+      console.log(`Erro ao buscar usuários: ${err}`)
+    }
+  }
+
+  const handleFormSubmit = () => {
+    fetchUsers()
+  }
 
   return (
     <>
       <div className="container">
         <h1>USUÁRIOS</h1>
-          <Form />
+          <Form 
+            handleFormSubmit={handleFormSubmit()}
+          />
           <Table 
             users={users}
           />
