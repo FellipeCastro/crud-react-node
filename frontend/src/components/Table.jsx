@@ -34,7 +34,7 @@ function Table({users, handleFormSubmit}) {
                             <td>{user.fone}</td>
                             <td>
                                 <FaEdit />
-                                <FaTrash 
+                                <FaTrash
                                     onClick={() => deleteUser(user.id)}
                                 />
                             </td>

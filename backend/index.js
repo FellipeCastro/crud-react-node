@@ -39,7 +39,8 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     const { nome, email, fone, data_nascimento } = req.body
 
-    const query = 'INSERT INTO usuarios (nome, email, fone, data_nascimento) VALUES (? ,?, ?, ?)'
+    // const query = 'INSERT INTO usuarios (nome, email, fone, data_nascimento) VALUES (? ,?, ?, ?)'
+    const query = 'INSERT INTO usuarios (nome, email, fone, data_nascimento) VALUES (?, ?, ?, ?)'
     conexao.query(query, [nome, email, fone, data_nascimento], (err, result) => {
         if (err) {
             console.log(`Erro ao adicionar usuário: ${err}`)

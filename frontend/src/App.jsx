@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 import './App.css'
@@ -27,10 +27,11 @@ function App() {
       <div className="container">
         <h1>USUÁRIOS</h1>
           <Form 
-            handleFormSubmit={handleFormSubmit()}
+            handleFormSubmit={handleFormSubmit}
           />
           <Table 
             users={users}
+            handleFormSubmit={handleFormSubmit}
           />
       </div>
     </>

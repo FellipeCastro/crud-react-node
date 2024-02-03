@@ -25,13 +25,15 @@ function Form({handleFormSubmit}) {
             setEmail('')
             setFone('')
             setDataNascimento('')
+
+            handleFormSubmit()
         } catch (err) {
             console.log(`Erro ao adicionar usuário: ${err}`)
         }
     }
 
     return (
-        <form className='crud-form' autoComplete='off' onSubmit={() => handleSubmit}>
+        <form className='crud-form' autoComplete='off' onSubmit={handleSubmit}>
             <div className="input-container">
                 <label htmlFor="nome">Nome: </label>
                 <input 
