@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import './Form.css'
 
-function Form({handleFormSubmit}) {
+function Form() {
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [fone, setFone] = useState('')
@@ -26,7 +26,6 @@ function Form({handleFormSubmit}) {
             setFone('')
             setDataNascimento('')
 
-            handleFormSubmit()
         } catch (err) {
             console.log(`Erro ao adicionar usuário: ${err}`)
         }
