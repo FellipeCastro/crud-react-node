@@ -4,11 +4,12 @@ import { FaEdit, FaTrash } from "react-icons/fa"
 
 import './Table.css'
 
-function Table({users}) {
+function Table({users, handleFormSubmit}) {
 
     const deleteUser = async (id) => {
         try {
             await axios.delete(`http://localhost:8800/${id}`)
+            handleFormSubmit()
         } catch (err) {
             console.log(`Erro ao excluir usuário: ${err}`)
         }
