@@ -4,8 +4,19 @@ import { FaEdit, FaTrash } from "react-icons/fa"
 
 import './Table.css'
 
-function Table({users, handleFormSubmit}) {
+function Table({users, handleFormSubmit, setUserId, setEditedUser}) {
+    
+    const updateUser = (user) => {
+        setUserId(user.id)
 
+        setEditedUser({
+            nome: user.nome,
+            email: user.email,
+            fone: user.fone,
+            data_nascimento: user.data_nascimento
+        })
+    }
+    
     const deleteUser = async (id) => {
         try {
             await axios.delete(`http://localhost:8800/${id}`)
@@ -33,7 +44,9 @@ function Table({users, handleFormSubmit}) {
                             <td>{user.email}</td>
                             <td>{user.fone}</td>
                             <td>
-                                <FaEdit />
+                                <FaEdit 
+                                    onClick={() => updateUser(user)}
+                                />
                                 <FaTrash
                                     onClick={() => deleteUser(user.id)}
                                 />

@@ -3,22 +3,74 @@ import axios from 'axios'
 
 import './Form.css'
 
-function Form({handleFormSubmit}) {
-    const [nome, setNome] = useState('')
-    const [email, setEmail] = useState('')
-    const [fone, setFone] = useState('')
-    const [dataNascimento, setDataNascimento] = useState('')
+function Form({handleFormSubmit, userId, setUserId, editedUser}) {
+    const [nome, setNome] = useState(editedUser.nome || '')
+    const [email, setEmail] = useState(editedUser.email || '')
+    const [fone, setFone] = useState(editedUser.fone || '')
+    const [dataNascimento, setDataNascimento] = useState(editedUser.data_nascimento || '')
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+
+    //     try {
+    //         if (editUser) {
+    //             await axios.put(`http://localhost:8800/${id}`, {
+    //                 nome: nome,
+    //                 email: email,
+    //                 fone: fone,
+    //                 data_nascimento: dataNascimento
+    //             })
+    //         } else {
+    //             await axios.post('http://localhost:8800', {
+    //                 nome: nome,
+    //                 email: email,
+    //                 fone: fone,
+    //                 data_nascimento: dataNascimento
+    //             })
+    //         }
+
+    //         handleFormSubmit()
+
+    //         // Limpar os dados do form após a submissão
+    //         setNome('')
+    //         setEmail('')
+    //         setFone('')
+    //         setDataNascimento('')
+
+    //         setEditUser(false)
+    //     } catch (err) {
+    //         console.log(`Erro ao adicionar usuário: ${err}`)
+    //     }
+
+
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         try {
-            await axios.post('http://localhost:8800', {
-                nome: nome,
-                email: email,
-                fone: fone,
-                data_nascimento: dataNascimento
-            })
+            if (userId) {
+                await axios.put(`http://localhost:8800/${userId}`, {
+                    nome: nome,
+                    email: email,
+                    fone: fone,
+                    data_nascimento: dataNascimento
+                })
+
+                setNome(editedUser.nome)
+                setEmail(editedUser.email)
+                setFone(editedUser.fone)
+                setDataNascimento(editedUser.data_nascimento)
+            } else {
+                await axios.post('http://localhost:8800', {
+                    nome: nome,
+                    email: email,
+                    fone: fone,
+                    data_nascimento: dataNascimento
+                })
+            }
+
+            handleFormSubmit()
 
             // Limpar os dados do form após a submissão
             setNome('')
@@ -26,9 +78,10 @@ function Form({handleFormSubmit}) {
             setFone('')
             setDataNascimento('')
 
-            handleFormSubmit()
+            // Resetar o editUserId para criar um novo usuário na próxima vez
+            setUserId(null)
         } catch (err) {
-            console.log(`Erro ao adicionar usuário: ${err}`)
+            console.log(`Erro ao adicionar/editar usuário: ${err}`)
         }
     }
 
@@ -42,7 +95,8 @@ function Form({handleFormSubmit}) {
                     id="nome" 
                     placeholder="Digite seu nome aqui" 
                     required 
-                    onChange={(e) => setNome(e.target.value)} 
+                    onChange={(e) => setNome(e.target.value)}
+                    value={nome}
                 />
             </div>
             <div className="input-container">
@@ -53,7 +107,8 @@ function Form({handleFormSubmit}) {
                     id="email" 
                     placeholder="Digite seu e-mail aqui" 
                     required 
-                    onChange={(e) => setEmail(e.target.value)} 
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                 />
             </div>
             <div className="input-container">
@@ -64,7 +119,8 @@ function Form({handleFormSubmit}) {
                     id="tell" 
                     placeholder="Digite seu telefone aqui" 
                     required 
-                    onChange={(e) => setFone(e.target.value)} 
+                    onChange={(e) => setFone(e.target.value)}
+                    value={fone}
                 />
             </div>
             <div className="input-container">
@@ -75,10 +131,13 @@ function Form({handleFormSubmit}) {
                     id="nasc" 
                     required 
                     onChange={(e) => setDataNascimento(e.target.value)} 
+                    value={dataNascimento}
                 />
             </div>
 
-            <button type="submit" className='btn'>Salvar</button>
+            <button type="submit" className='btn'>
+                {userId ? 'Editar' : 'Salvar'}
+            </button>
         </form>
     )
 }

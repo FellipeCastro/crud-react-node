@@ -8,6 +8,13 @@ import Table from './components/Table'
 
 function App() {
   const [users, setUsers] = useState([])
+  const [userId, setUserId] = useState(false)
+  const [editedUser, setEditedUser] = useState({
+    nome: null,
+    email: null,
+    fone: null,
+    data_nascimento: null
+  })
 
   const fetchUsers = async () => {
     try {
@@ -32,10 +39,15 @@ function App() {
         <h1>USUÁRIOS</h1>
           <Form 
             handleFormSubmit={handleFormSubmit}
+            userId={userId}
+            setUserId={setUserId}
+            editedUser={editedUser}
           />
           <Table 
             users={users}
             handleFormSubmit={handleFormSubmit}
+            setUserId={setUserId}
+            setEditedUser={setEditedUser}
           />
       </div>
     </>

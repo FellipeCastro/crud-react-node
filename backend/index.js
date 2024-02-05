@@ -66,6 +66,22 @@ app.delete('/:id', (req, res) => {
     })
 })
 
+// Editar usuário
+app.put('/:id', (req, res) => {
+    const id = req.params.id
+    const { nome, email, fone, data_nascimento } = req.body
+    const query = 'UPDATE usuarios SET nome=?, email=?, fone=?, data_nascimento=? WHERE id=?'
+
+    conexao.query(query, [nome, email, fone, data_nascimento, id], (err, result) => {
+        if(err) {
+            console.log(`Erro ao editar usuário: ${err}`)
+            return res.status(500).json({error: 'Erro interno do servidor'})
+        } else {
+            return res.status(200).json(result)
+        }
+    })
+})
+
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`)
 })
