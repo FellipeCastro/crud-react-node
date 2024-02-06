@@ -10,10 +10,10 @@ function App() {
   const [users, setUsers] = useState([])
   const [userId, setUserId] = useState(false)
   const [editedUser, setEditedUser] = useState({
-    nome: null,
-    email: null,
-    fone: null,
-    data_nascimento: null
+    nome: '',
+    email: '',
+    fone: '',
+    data_nascimento: ''
   })
 
   const fetchUsers = async () => {
@@ -25,10 +25,6 @@ function App() {
     }
   }
 
-  const handleFormSubmit = () => {
-    fetchUsers()
-  }
-
   useEffect(() => {
     fetchUsers()
   }, [])
@@ -38,14 +34,14 @@ function App() {
       <div className="container">
         <h1>USUÁRIOS</h1>
           <Form 
-            handleFormSubmit={handleFormSubmit}
+            fetchUsers={fetchUsers}
             userId={userId}
             setUserId={setUserId}
             editedUser={editedUser}
           />
           <Table 
             users={users}
-            handleFormSubmit={handleFormSubmit}
+            fetchUsers={fetchUsers}
             setUserId={setUserId}
             setEditedUser={setEditedUser}
           />

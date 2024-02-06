@@ -3,47 +3,11 @@ import axios from 'axios'
 
 import './Form.css'
 
-function Form({handleFormSubmit, userId, setUserId, editedUser}) {
-    const [nome, setNome] = useState(editedUser.nome || '')
-    const [email, setEmail] = useState(editedUser.email || '')
-    const [fone, setFone] = useState(editedUser.fone || '')
-    const [dataNascimento, setDataNascimento] = useState(editedUser.data_nascimento || '')
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-
-    //     try {
-    //         if (editUser) {
-    //             await axios.put(`http://localhost:8800/${id}`, {
-    //                 nome: nome,
-    //                 email: email,
-    //                 fone: fone,
-    //                 data_nascimento: dataNascimento
-    //             })
-    //         } else {
-    //             await axios.post('http://localhost:8800', {
-    //                 nome: nome,
-    //                 email: email,
-    //                 fone: fone,
-    //                 data_nascimento: dataNascimento
-    //             })
-    //         }
-
-    //         handleFormSubmit()
-
-    //         // Limpar os dados do form após a submissão
-    //         setNome('')
-    //         setEmail('')
-    //         setFone('')
-    //         setDataNascimento('')
-
-    //         setEditUser(false)
-    //     } catch (err) {
-    //         console.log(`Erro ao adicionar usuário: ${err}`)
-    //     }
-
-
-    // }
+function Form({fetchUsers, userId, setUserId, editedUser}) {
+    const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
+    const [fone, setFone] = useState('')
+    const [dataNascimento, setDataNascimento] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -56,11 +20,6 @@ function Form({handleFormSubmit, userId, setUserId, editedUser}) {
                     fone: fone,
                     data_nascimento: dataNascimento
                 })
-
-                setNome(editedUser.nome)
-                setEmail(editedUser.email)
-                setFone(editedUser.fone)
-                setDataNascimento(editedUser.data_nascimento)
             } else {
                 await axios.post('http://localhost:8800', {
                     nome: nome,
@@ -70,7 +29,7 @@ function Form({handleFormSubmit, userId, setUserId, editedUser}) {
                 })
             }
 
-            handleFormSubmit()
+            fetchUsers()
 
             // Limpar os dados do form após a submissão
             setNome('')
@@ -96,7 +55,7 @@ function Form({handleFormSubmit, userId, setUserId, editedUser}) {
                     placeholder="Digite seu nome aqui" 
                     required 
                     onChange={(e) => setNome(e.target.value)}
-                    value={nome}
+                    value={userId ? editedUser.nome : nome}
                 />
             </div>
             <div className="input-container">
@@ -108,7 +67,7 @@ function Form({handleFormSubmit, userId, setUserId, editedUser}) {
                     placeholder="Digite seu e-mail aqui" 
                     required 
                     onChange={(e) => setEmail(e.target.value)}
-                    value={email}
+                    value={userId ? editedUser.email : email}
                 />
             </div>
             <div className="input-container">
@@ -120,7 +79,7 @@ function Form({handleFormSubmit, userId, setUserId, editedUser}) {
                     placeholder="Digite seu telefone aqui" 
                     required 
                     onChange={(e) => setFone(e.target.value)}
-                    value={fone}
+                    value={userId ? editedUser.fone : fone}
                 />
             </div>
             <div className="input-container">
@@ -131,7 +90,7 @@ function Form({handleFormSubmit, userId, setUserId, editedUser}) {
                     id="nasc" 
                     required 
                     onChange={(e) => setDataNascimento(e.target.value)} 
-                    value={dataNascimento}
+                    value={userId ? editedUser.data_nascimento : dataNascimento}
                 />
             </div>
 

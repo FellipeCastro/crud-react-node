@@ -82,6 +82,7 @@ app.put('/:id', (req, res) => {
     })
 })
 
+// Escutar porta 8800
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`)
 })
