@@ -29,6 +29,7 @@ function Form({fetchUsers, userId, setUserId, editedUser}) {
                 })
             }
 
+            // Atualizar a tabela após a submissão
             fetchUsers()
 
             // Limpar os dados do form após a submissão
@@ -55,7 +56,7 @@ function Form({fetchUsers, userId, setUserId, editedUser}) {
                     placeholder="Digite seu nome aqui" 
                     required 
                     onChange={(e) => setNome(e.target.value)}
-                    value={userId ? editedUser.nome : nome}
+                    value={nome}
                 />
             </div>
             <div className="input-container">
@@ -67,7 +68,7 @@ function Form({fetchUsers, userId, setUserId, editedUser}) {
                     placeholder="Digite seu e-mail aqui" 
                     required 
                     onChange={(e) => setEmail(e.target.value)}
-                    value={userId ? editedUser.email : email}
+                    value={email}
                 />
             </div>
             <div className="input-container">
@@ -79,7 +80,7 @@ function Form({fetchUsers, userId, setUserId, editedUser}) {
                     placeholder="Digite seu telefone aqui" 
                     required 
                     onChange={(e) => setFone(e.target.value)}
-                    value={userId ? editedUser.fone : fone}
+                    value={fone}
                 />
             </div>
             <div className="input-container">
@@ -90,7 +91,7 @@ function Form({fetchUsers, userId, setUserId, editedUser}) {
                     id="nasc" 
                     required 
                     onChange={(e) => setDataNascimento(e.target.value)} 
-                    value={userId ? editedUser.data_nascimento : dataNascimento}
+                    value={dataNascimento}
                 />
             </div>
 
