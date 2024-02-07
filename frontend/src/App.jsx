@@ -8,7 +8,7 @@ import Table from './components/Table'
 
 function App() {
   const [users, setUsers] = useState([])
-  const [userId, setUserId] = useState(false)
+  const [userId, setUserId] = useState(null)
   const [editedUser, setEditedUser] = useState({
     nome: '',
     email: '',

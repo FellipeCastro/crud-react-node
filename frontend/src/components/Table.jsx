@@ -13,7 +13,7 @@ function Table({users, fetchUsers, setUserId, setEditedUser}) {
             nome: user.nome,
             email: user.email,
             fone: user.fone,
-            data_nascimento: user.data_nascimento
+            data_nascimento: new Date(user.data_nascimento).toISOString().split('T')[0]
         })
     }
     
