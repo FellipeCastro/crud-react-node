@@ -38,7 +38,7 @@ function Form({fetchUsers, userId, setUserId, editedUser}) {
             setFone('')
             setDataNascimento('')
 
-            // Resetar o editUserId para criar um novo usuário na próxima vez
+            // Resetar o userId para criar um novo usuário na próxima vez
             setUserId(null)
         } catch (err) {
             console.log(`Erro ao adicionar/editar usuário: ${err}`)
