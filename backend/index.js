@@ -19,7 +19,7 @@ const conexao = mysql.createConnection({
 
 conexao.connect()
 
-// Rotas
+// ROTAS
 
 // Listar usuários
 app.get('/', (req, res) => {
