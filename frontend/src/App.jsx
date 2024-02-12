@@ -38,10 +38,12 @@ function App() {
             userId={userId}
             setUserId={setUserId}
             editedUser={editedUser}
+            setEditedUser={setEditedUser}
           />
           <Table 
             users={users}
             fetchUsers={fetchUsers}
+            userId={userId}
             setUserId={setUserId}
             setEditedUser={setEditedUser}
           />

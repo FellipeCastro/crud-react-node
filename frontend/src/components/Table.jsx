@@ -4,7 +4,7 @@ import { FaEdit, FaTrash } from "react-icons/fa"
 
 import './Table.css'
 
-function Table({users, fetchUsers, setUserId, setEditedUser}) {
+function Table({users, fetchUsers, setUserId, userId, setEditedUser}) {
     
     const updateUser = (user) => {
         setUserId(user.id)

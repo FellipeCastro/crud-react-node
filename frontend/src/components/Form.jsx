@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import './Form.css'
@@ -8,6 +8,13 @@ function Form({fetchUsers, userId, setUserId, editedUser}) {
     const [email, setEmail] = useState('')
     const [fone, setFone] = useState('')
     const [dataNascimento, setDataNascimento] = useState('')
+
+    useEffect(() => {
+        setNome(editedUser.nome);
+        setEmail(editedUser.email);
+        setFone(editedUser.fone);
+        setDataNascimento(editedUser.data_nascimento);
+    }, [editedUser])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
