@@ -19,7 +19,7 @@ function App() {
   const fetchUsers = async () => {
     try {
       const res = await axios.get('http://localhost:8800')
-      setUsers(res.data)
+      setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1))) // Ordenando os usuários em ordem alfabética
     } catch (err) {
       console.log(`Erro ao buscar usuários: ${err}`)
     }
