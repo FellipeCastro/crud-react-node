@@ -7,14 +7,25 @@ import './Table.css'
 function Table({users, fetchUsers, setUserId, userId, setEditedUser}) {
     
     const updateUser = (user) => {
-        setUserId(user.id)
+        if (!userId) {
+            setUserId(user.id)
 
-        setEditedUser({
-            nome: user.nome,
-            email: user.email,
-            fone: user.fone,
-            data_nascimento: new Date(user.data_nascimento).toISOString().split('T')[0]
-        })
+            setEditedUser({
+                nome: user.nome,
+                email: user.email,
+                fone: user.fone,
+                data_nascimento: new Date(user.data_nascimento).toISOString().split('T')[0]
+            })
+        } else {
+            setUserId(null)
+
+            setEditedUser({
+                nome: '',
+                email: '',
+                fone: '',
+                data_nascimento: ''
+            })
+        }
     }
     
     const deleteUser = async (id) => {
