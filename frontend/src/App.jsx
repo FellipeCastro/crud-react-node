@@ -5,10 +5,12 @@ import './App.css'
 
 import Form from './components/Form'
 import Table from './components/Table'
+import Loading from './components/Loading'
 
 function App() {
   const [users, setUsers] = useState([])
   const [userId, setUserId] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
   const [editedUser, setEditedUser] = useState({
     nome: '',
     email: '',
@@ -20,6 +22,7 @@ function App() {
     try {
       const res = await axios.get('http://localhost:8800')
       setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1))) // Ordenando os usuários em ordem alfabética
+      setIsLoading(false)
     } catch (err) {
       console.log(`Erro ao buscar usuários: ${err}`)
     }
@@ -40,13 +43,18 @@ function App() {
             editedUser={editedUser}
             setEditedUser={setEditedUser}
           />
-          <Table 
-            users={users}
-            fetchUsers={fetchUsers}
-            userId={userId}
-            setUserId={setUserId}
-            setEditedUser={setEditedUser}
-          />
+
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Table 
+              users={users}
+              fetchUsers={fetchUsers}
+              userId={userId}
+              setUserId={setUserId}
+              setEditedUser={setEditedUser}
+            />            
+          )}
       </div>
     </>
   )
