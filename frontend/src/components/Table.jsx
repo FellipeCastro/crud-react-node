@@ -4,6 +4,8 @@ import { FaEdit, FaTrash } from "react-icons/fa"
 
 import './Table.css'
 
+import Loading from './Loading'
+
 function Table({users, fetchUsers, setUserId, userId, setEditedUser}) {
     
     const updateUser = (user) => {
@@ -49,7 +51,8 @@ function Table({users, fetchUsers, setUserId, userId, setEditedUser}) {
             </thead>
 
             <tbody>
-                {users.map((user, i) => {
+
+                {users.length >= 1 ? users.map((user, i) => {
                     const formattedDate = new Date(user.data_nascimento).toLocaleDateString('pt-BR')
 
                     return (
@@ -68,7 +71,7 @@ function Table({users, fetchUsers, setUserId, userId, setEditedUser}) {
                             </td>
                         </tr>
                     )
-                })}
+                }) : <Loading />}
             </tbody>
         </table>
     )
